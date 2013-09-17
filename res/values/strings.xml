@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">UPRRP Security</string>
+    <string name="menu_settings">Settings</string>
+    <string name="Fragment1">Aqui va el mapa con los trolleys</string>
+    <string name="Fragment2">Aqui va el News Feed</string>
+    <string name="Fragment3">Aqui se pondra La evacuacion de Emergencias</string>
+    <string name="Fragment4">Aqui se pondran los pedidos de Escoltas</string>
+    <string name="News">News Feed</string>
+    <string name="trostring">Aqui va el mapa con los trolleys</string>
+
+</resources>
