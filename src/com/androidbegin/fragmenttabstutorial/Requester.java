@@ -1,6 +1,7 @@
 package com.androidbegin.fragmenttabstutorial;
 
 import java.io.IOException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -18,11 +19,11 @@ import android.os.AsyncTask;
 public class Requester extends AsyncTask <String, String, String>{
 	
 	public String results = "ERROR";
-
+	
 	@Override
 	protected String doInBackground(String... params) {
-	    	
-		System.out.print(params[0]+":::"+params[1]);
+		
+		boolean hasJson = true;
 		
 	    JSONObject json = null;
 	            
@@ -33,35 +34,67 @@ public class Requester extends AsyncTask <String, String, String>{
 		} catch (JSONException e1) {
 
 			e1.printStackTrace();
-				
+			
+			hasJson = false;
+			
 		}
-		        
-	    try{
-		            
-	    	HttpClient hc = new DefaultHttpClient();
-		            
-		    HttpPost post = new HttpPost(params[0]);
-		            
-		    StringEntity se = new StringEntity(json.toString());  
-		            
-		    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-		            
-		    post.setEntity(se);
-		            
-		    HttpResponse rp = hc.execute(post);
 		
-		    if(rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
-		            
-		    	results = EntityUtils.toString(rp.getEntity());
-		            
+		if(hasJson){
+		        
+		    try{
+			            
+		    	HttpClient hc = new DefaultHttpClient();
+			            
+			    HttpPost post = new HttpPost(params[0]);
+			            
+			    StringEntity se = new StringEntity(json.toString());  
+			            
+			    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+			            
+			    post.setEntity(se);
+			            
+			    HttpResponse rp = hc.execute(post);
+			
+			    if(rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+			            
+			    	results = EntityUtils.toString(rp.getEntity());
+			            
+			    }
+	
 		    }
-
-	    }
-		        
-		catch(IOException e){
-		        
-			e.printStackTrace();
-		        
+			        
+			catch(IOException e){
+			        
+				e.printStackTrace();
+			        
+			}
+		    
+		}
+		
+		else {
+			
+		    try{
+	            
+		    	HttpClient hc = new DefaultHttpClient();
+			            
+			    HttpPost post = new HttpPost(params[0]);
+			            
+			    HttpResponse rp = hc.execute(post);
+			
+			    if(rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+			            
+			    	results = EntityUtils.toString(rp.getEntity());
+			            
+			    }
+	
+		    }
+			        
+			catch(IOException e){
+			        
+				e.printStackTrace();
+			        
+			}
+			
 		}
 	        	
 	    return results;

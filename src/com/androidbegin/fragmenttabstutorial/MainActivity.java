@@ -14,38 +14,33 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		// Create an actionbar
 		ActionBar actionBar = getActionBar();
-
 		// Hide Actionbar Icon
 		actionBar.setDisplayShowHomeEnabled(false);
-
 		// Hide Actionbar Title
 		actionBar.setDisplayShowTitleEnabled(false);
-
 		// Create Actionbar Tabs
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Create first Tab
 		tab = actionBar.newTab().setTabListener(new FragmentTab1());
-		// Create your own custom icon
 		//tab.setIcon(R.drawable.tab1);
-		tab.setText("Trolley");
+		// Set Tab Title
+
+		tab.setText("News Feed");
 		actionBar.addTab(tab);
 
 		// Create Second Tab
 		tab = actionBar.newTab().setTabListener(new FragmentTab2());
-		// Set Tab Title
-		tab.setText("News Feed");
+		tab.setText("Trolley");
 		actionBar.addTab(tab);
 
 		// Create Third Tab
 		tab = actionBar.newTab().setTabListener(new FragmentTab3());
-		// Set Tab Title
 		tab.setText("Emergencias");
 		actionBar.addTab(tab);
 		
 		//Create Fourth Tab
 		tab = actionBar.newTab().setTabListener(new FragmentTab4());
-		// Set Tab Title
 		tab.setText("Escoltas");
 		actionBar.addTab(tab);
 	}
